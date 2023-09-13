@@ -1,0 +1,31 @@
+FROM amazonlinux:2 AS base
+RUN yum update -y && \
+    yum  install -y unzip wget httpd
+RUN amazon-linux-extras enable php8.0 && \
+    yum install -y php && \
+    yum install -y \
+    php-cli \
+    php-fpm \
+    php-mysqlnd \
+    php-bcmath \
+    php-ctype \
+    php-fileinfo \
+    php-json \
+    php-mbstring \
+    php-openssl \
+    php-pdo \
+    php-gd \
+    php-tokenizer \
+    php-xml
+
+#Install Mysql-community-server
+
+RUN wget  https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm && \
+    rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 && \
+    yum  localinstall -y mysql80-community-release-el7-5.noarch.rpm && \
+    yum  install -y mysql-community-server && \
+    yum clean all
+
+
+
+
