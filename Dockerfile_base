@@ -26,6 +26,7 @@ RUN wget  https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm &
     yum  install -y mysql-community-server && \
     yum clean all
 
+RUN yum install -y curl  libcurl libcurl-devel php-curl
 
 
 

@@ -3,13 +3,13 @@
 
 IMG_NAME=nest_base_image
 DOCKERFILE=Dockerfile_base
-AWSCLI_USER=zzzzzz
-CONTAINER-PHP=php
-CONTAINER-DB=db
-VOLUME_DB=laravel-blog_db-data
+AWSCLI_USER=yyyyyy
+CONTAINER-PHP=
+CONTAINER-DB=
+VOLUME_DB=
 AWS_REGION=us-east-1
-AWS_ACCOUNTID=XXXXXXXX
-VERSION_IMG=1.0
+AWS_ACCOUNTID=xxxxxx
+VERSION_IMG=2.0
 
 help: ## Print help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
@@ -32,10 +32,10 @@ tag-ecr: ## tag and push to aws ecr
 push-ecr: ## tag and push image to AWS ECR
 	@docker push ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMG_NAME}:${VERSION_IMG}
 
-deploy-ecr: auth-ecr tag-ecr push-ecr ## authenticate, tag and push to AWS ECR repo
+deploy-ecr:  tag-ecr auth-ecr cree-repo-ecr push-ecr ## authenticate, tag and push to AWS ECR repo
 
-	
-# ps: ## Show containers
+# ps: ## Show containersclear
+
 # 	@docker  ps
 
 # start: ## Start and recreate all containers 
