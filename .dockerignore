@@ -2,4 +2,4 @@ Makefile
 Dockerfile*
 README*
 .env*
-docker-compose.*
+docker-compose*.*
